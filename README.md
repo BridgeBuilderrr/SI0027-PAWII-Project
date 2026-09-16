@@ -4,8 +4,6 @@ Repositori **mini-project** (starter kit latihan) pendamping mata kuliah **Penge
 
 Repositori ini **bukan** kumpulan jawaban tugas. Setiap folder pertemuan berisi starter kit latihan singkat (berisi `// TODO` yang perlu dilengkapi mahasiswa) yang dikerjakan bersama di kelas, ditampilkan pada slide materi sebagai bahan praktik.
 
-Solusi referensi dari setiap mini-project di sini tersedia pada repositori terpisah **[SI0027-PAWII-Solution](https://github.com/nurrachmat-nr/SI0027-PAWII-Solution)**. Solusi referensi tersebut **bukan jawaban Tugas Project Mandiri** yang dinilai pada RPS — tugas project mandiri dikumpulkan secara terpisah melalui LMS.
-
 ## Struktur Repositori
 
 ```
