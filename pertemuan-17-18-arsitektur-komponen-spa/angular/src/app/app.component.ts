@@ -1,33 +1,16 @@
 // Mini Project - Pertemuan 17-18: Component tree
-// TODO 4: lengkapi state & susun component tree AppComponent -> PageHeader, SearchBar, MahasiswaList.
+// AppComponent (shell, sudah lengkap) -> PageHeader, <router-outlet> -> DaftarMahasiswaPage/Tentang
+// Fokuskan TODO pada DaftarMahasiswaPageComponent (src/app/pages/daftar-mahasiswa-page/).
 
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { MahasiswaListComponent } from './components/mahasiswa-list/mahasiswa-list.component';
-import { Mahasiswa } from './mahasiswa.model';
-
-const DATA_MAHASISWA: Mahasiswa[] = [
-  { id: 1, nama: 'Andi', nim: '2024001' },
-  { id: 2, nama: 'Budi', nim: '2024002' },
-  { id: 3, nama: 'Citra', nim: '2024003' },
-];
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [PageHeaderComponent, SearchBarComponent, MahasiswaListComponent],
+  imports: [PageHeaderComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
-  keyword = '';
-
-  // TODO: buat getter mahasiswaTersaring() yang mengembalikan Mahasiswa[]
-  // dengan memfilter DATA_MAHASISWA berdasarkan apakah
-  // m.nama.toLowerCase() mengandung this.keyword.toLowerCase()
-
-  onSearch(keyword: string) {
-    this.keyword = keyword;
-  }
-}
+export class AppComponent {}
