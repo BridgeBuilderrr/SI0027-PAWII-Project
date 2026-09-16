@@ -1,0 +1,19 @@
+<div class="app">
+  <app-page-header judul="Daftar Mahasiswa"></app-page-header>
+
+  <ng-container *ngIf="isLoggedIn; else loginTpl">
+    <app-mahasiswa-form (tambah)="onTambah($event)"></app-mahasiswa-form>
+    <button class="logout-button" (click)="onLogout()">Logout</button>
+  </ng-container>
+  <ng-template #loginTpl>
+    <app-login-form (loginBerhasil)="isLoggedIn = true"></app-login-form>
+  </ng-template>
+
+  <app-search-bar [keyword]="keyword" (search)="onSearch($event)"></app-search-bar>
+
+  <p *ngIf="loading">Memuat...</p>
+  <p class="error" *ngIf="error">{{ error }}</p>
+  <app-mahasiswa-list *ngIf="!loading && !error" [mahasiswa]="mahasiswaTersaring"></app-mahasiswa-list>
+
+  <footer class="env-footer">Terhubung ke: {{ apiBaseUrl }}</footer>
+</div>

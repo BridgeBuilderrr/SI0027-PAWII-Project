@@ -1,0 +1,10 @@
+// Solusi Referensi - Pertemuan 13-14: Model Prodi (dipertahankan dari Pertemuan 9-10)
+
+const mongoose = require("mongoose");
+
+const prodiSchema = new mongoose.Schema({
+  nama: { type: String, required: true },
+  jenjang: { type: String, default: "S1" },
+});
+
+module.exports = mongoose.model("Prodi", prodiSchema);

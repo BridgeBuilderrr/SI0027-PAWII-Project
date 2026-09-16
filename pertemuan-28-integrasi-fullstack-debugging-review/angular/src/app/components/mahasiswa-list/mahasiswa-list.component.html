@@ -1,0 +1,9 @@
+<p class="empty" *ngIf="mahasiswa.length === 0">Tidak ada mahasiswa yang cocok.</p>
+
+<div class="mahasiswa-list" *ngIf="mahasiswa.length > 0">
+  <app-mahasiswa-card
+    *ngFor="let m of mahasiswa"
+    [nama]="m.nama"
+    [nim]="m.nim"
+  ></app-mahasiswa-card>
+</div>

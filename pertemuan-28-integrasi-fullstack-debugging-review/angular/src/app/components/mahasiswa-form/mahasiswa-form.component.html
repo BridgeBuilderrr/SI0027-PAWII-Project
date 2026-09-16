@@ -1,0 +1,17 @@
+<form class="mahasiswa-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="field">
+    <input formControlName="nama" placeholder="Nama" />
+    <span class="error" *ngIf="form.get('nama')?.invalid && form.get('nama')?.touched">
+      Nama wajib diisi
+    </span>
+  </div>
+
+  <div class="field">
+    <input formControlName="nim" placeholder="NIM (7 digit)" />
+    <span class="error" *ngIf="form.get('nim')?.invalid && form.get('nim')?.touched">
+      NIM harus 7 digit angka
+    </span>
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Tambah</button>
+</form>

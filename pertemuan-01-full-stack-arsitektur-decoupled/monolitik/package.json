@@ -1,0 +1,12 @@
+{
+  "name": "mini-project-monolitik",
+  "version": "1.0.0",
+  "description": "Starter aplikasi monolitik - Pertemuan 1 PAW II",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

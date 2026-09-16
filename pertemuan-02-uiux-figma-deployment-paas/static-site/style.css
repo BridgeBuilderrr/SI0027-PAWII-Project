@@ -1,0 +1,35 @@
+/* Mini Project - Pertemuan 2: styling halaman statis sebelum deployment */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* TODO 1: beri latar belakang gelap & padding pada .header, .logo bold & besar,
+   nav rata kanan dengan jarak antar link */
+.header {
+}
+
+/* TODO 2: buat .hero rata tengah, judul besar (h1), tombol .cta menonjol dengan
+   warna latar mencolok dan padding yang nyaman diklik */
+.hero {
+}
+
+.cta {
+}
+
+/* TODO 3: buat .features menjadi grid 3 kolom dengan jarak antar kartu,
+   .feature-card diberi latar belakang lembut & sudut membulat */
+.features {
+}
+
+.feature-card {
+}
+
+.footer {
+  text-align: center;
+  padding: 24px;
+  color: #666;
+}
