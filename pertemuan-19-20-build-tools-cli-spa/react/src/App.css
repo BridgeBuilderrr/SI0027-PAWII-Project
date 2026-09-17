@@ -6,7 +6,16 @@
 
 .page-header h1 {
   font-size: 28px;
-  margin: 0 0 20px;
+  margin: 0 0 8px;
+}
+
+.page-header nav {
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.tentang {
+  line-height: 1.6;
 }
 
 .search-bar {

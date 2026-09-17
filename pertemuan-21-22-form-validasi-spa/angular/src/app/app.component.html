@@ -1,7 +1,4 @@
 <div class="app">
   <app-page-header judul="Daftar Mahasiswa"></app-page-header>
-  <app-mahasiswa-form (tambah)="onTambah($event)"></app-mahasiswa-form>
-  <app-search-bar [keyword]="keyword" (search)="onSearch($event)"></app-search-bar>
-  <app-mahasiswa-list [mahasiswa]="mahasiswaTersaring"></app-mahasiswa-list>
-  <footer class="env-footer">Terhubung ke: {{ apiBaseUrl }}</footer>
+  <router-outlet></router-outlet>
 </div>

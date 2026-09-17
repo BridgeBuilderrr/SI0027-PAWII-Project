@@ -1,12 +1,15 @@
 // Mini Project - Pertemuan 19-20: menambahkan environment variable (VITE_API_BASE_URL)
 // Component tree (sudah lengkap dari Pertemuan 17-18): App (state) -> PageHeader, SearchBar, MahasiswaList -> MahasiswaCard
+// Routing ("/" & "/tentang") sudah lengkap - fokuskan TODO pada bagian environment variable di bawah.
 // TODO 1: lengkapi bagian environment variable di bawah ini.
 
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import PageHeader from "./components/PageHeader";
 import SearchBar from "./components/SearchBar";
 import MahasiswaList from "./components/MahasiswaList";
+import Tentang from "./components/Tentang";
 
 // TODO: baca environment variable VITE_API_BASE_URL lewat import.meta.env.VITE_API_BASE_URL
 // const API_BASE_URL = ...
@@ -17,7 +20,7 @@ const DATA_MAHASISWA = [
   { id: 3, nama: "Citra", nim: "2024003" },
 ];
 
-function App() {
+function DaftarMahasiswaPage() {
   const [keyword, setKeyword] = useState("");
 
   const mahasiswaTersaring = DATA_MAHASISWA.filter((m) =>
@@ -25,11 +28,22 @@ function App() {
   );
 
   return (
-    <div className="app">
-      <PageHeader judul="Daftar Mahasiswa" />
+    <>
       <SearchBar keyword={keyword} onSearch={setKeyword} />
       <MahasiswaList mahasiswa={mahasiswaTersaring} />
       {/* TODO: tampilkan <footer className="env-footer">Terhubung ke: {API_BASE_URL}</footer> */}
+    </>
+  );
+}
+
+function App() {
+  return (
+    <div className="app">
+      <PageHeader judul="Daftar Mahasiswa" />
+      <Routes>
+        <Route path="/" element={<DaftarMahasiswaPage />} />
+        <Route path="/tentang" element={<Tentang />} />
+      </Routes>
     </div>
   );
 }

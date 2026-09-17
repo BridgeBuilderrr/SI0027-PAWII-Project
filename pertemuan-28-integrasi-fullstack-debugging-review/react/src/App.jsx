@@ -1,7 +1,10 @@
-// Solusi Referensi - Pertemuan 23-24-25: Konsumsi API sungguhan (Axios) & Autentikasi JWT
-// Component tree: App (state) -> PageHeader, LoginForm|MahasiswaForm, SearchBar, MahasiswaList -> MahasiswaCard
+// Mini Project - Pertemuan 23-24-25: Konsumsi API sungguhan (Axios) & Autentikasi JWT
+// Component tree (sudah lengkap dari Pertemuan 17-22): App (state) -> PageHeader, LoginForm|MahasiswaForm, SearchBar, MahasiswaList -> MahasiswaCard
+// Routing ("/" & "/tentang") sudah lengkap.
+// TODO 3: lengkapi pengambilan data (GET) dan pengiriman data (POST) di bawah ini.
 
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import api from "./api/axiosInstance";
 import PageHeader from "./components/PageHeader";
@@ -9,10 +12,11 @@ import SearchBar from "./components/SearchBar";
 import MahasiswaForm from "./components/MahasiswaForm";
 import MahasiswaList from "./components/MahasiswaList";
 import LoginForm from "./components/LoginForm";
+import Tentang from "./components/Tentang";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-function App() {
+function DaftarMahasiswaPage() {
   const [mahasiswa, setMahasiswa] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,20 +24,17 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
 
   useEffect(() => {
-    api
-      .get("/mahasiswa")
-      .then((res) => setMahasiswa(res.data.data))
-      .catch(() => setError("Gagal memuat data mahasiswa"))
-      .finally(() => setLoading(false));
+    // TODO: panggil api.get('/mahasiswa')
+    // TODO: .then((res) => setMahasiswa(res.data.data))
+    // TODO: .catch(() => setError('Gagal memuat data mahasiswa'))
+    // TODO: .finally(() => setLoading(false))
   }, []);
 
   async function handleTambah(mahasiswaBaru) {
-    try {
-      const res = await api.post("/mahasiswa", mahasiswaBaru);
-      setMahasiswa((prev) => [...prev, res.data]);
-    } catch (err) {
-      alert("Gagal menambah data (pastikan Anda sudah login)");
-    }
+    // TODO: bungkus dengan try/catch
+    // TODO: const res = await api.post('/mahasiswa', mahasiswaBaru)
+    // TODO: setMahasiswa((prev) => [...prev, res.data])
+    // TODO: pada catch, tampilkan alert('Gagal menambah data (pastikan Anda sudah login)')
   }
 
   function handleLogout() {
@@ -46,9 +47,7 @@ function App() {
   );
 
   return (
-    <div className="app">
-      <PageHeader judul="Daftar Mahasiswa" />
-
+    <>
       {isLoggedIn ? (
         <>
           <MahasiswaForm onTambah={handleTambah} />
@@ -67,6 +66,18 @@ function App() {
       {!loading && !error && <MahasiswaList mahasiswa={mahasiswaTersaring} />}
 
       <footer className="env-footer">Terhubung ke: {API_BASE_URL}</footer>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <div className="app">
+      <PageHeader judul="Daftar Mahasiswa" />
+      <Routes>
+        <Route path="/" element={<DaftarMahasiswaPage />} />
+        <Route path="/tentang" element={<Tentang />} />
+      </Routes>
     </div>
   );
 }
