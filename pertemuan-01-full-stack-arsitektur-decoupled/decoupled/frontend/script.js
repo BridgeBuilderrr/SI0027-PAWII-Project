@@ -13,9 +13,23 @@ const API_URL = "http://localhost:4000/api/produk";
 async function muatProduk() {
   const container = document.getElementById("daftar-produk");
 
-  // TODO 1: fetch data dari API_URL, ubah menjadi JSON
+  try {
+    const response = await fetch(API_URL);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
 
-  // TODO 2: loop hasilnya, buat elemen <li>, lalu append ke `container`
+    const data = await response.json();
+
+    data.forEach((item) => {
+      const li = document.createElement("li");
+      li.textContent = `${item.nama} - Rp ${Number(item.harga).toLocaleString("id-ID")}`;
+      container.appendChild(li);
+    });
+  } catch (error) {
+    console.error("Gagal memuat produk:", error);
+    container.textContent = "Gagal memuat produk.";
+  }
 }
 
 muatProduk();
