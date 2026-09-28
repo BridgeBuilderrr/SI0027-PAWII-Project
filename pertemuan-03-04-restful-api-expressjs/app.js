@@ -8,7 +8,7 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 
-app.use(express.json());
+app.use(express.json()); 
 
 let mahasiswa = [
   { id: 1, nama: "Andi", jurusan: "Sistem Informasi", aktif: true },
