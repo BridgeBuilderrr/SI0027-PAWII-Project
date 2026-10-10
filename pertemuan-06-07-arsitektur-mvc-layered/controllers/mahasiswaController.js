@@ -1,18 +1,38 @@
-// Mini Project - Pertemuan 6-7: Layer Controller
-// TODO 2: lengkapi setiap handler agar memanggil fungsi model yang sesuai.
-
 const mahasiswaModel = require("../models/mahasiswaModel");
 
-exports.getAll = (req, res) => {
-  // TODO: kirim seluruh data mahasiswa (mahasiswaModel.getAll()) sebagai JSON
+exports.getAll = (req, res)=>{
+  res.json(mahasiswaModel.getAll());
 };
 
-exports.getById = (req, res) => {
-  // TODO: ambil id dari req.params, cari via mahasiswaModel.getById(),
-  // kirim 404 dengan { message: 'Tidak ditemukan' } jika tidak ada
+exports.getById = (req, res)=>{
+  const id = parseInt(req.params.id);
+  const data = mahasiswaModel.getById(id);
+  if (!data) return res.status(404).json({ message: "Not Found" });
+  res.json(data);
 };
 
-exports.create = (req, res) => {
-  // TODO: buat data baru via mahasiswaModel.create(req.body),
-  // kirim response dengan status 201
+exports.create = (req, res)=>{
+  const baru = mahasiswaModel.create(req.body);
+  res.status(201).json(baru);
+};
+
+exports.update = (req, res)=>{
+  const id = parseInt(req.params.id);
+  const data = mahasiswaModel.update(id, req.body);
+  if (!data) return res.status(404).json({ message: "Not Found" });
+  res.json(data);
+};
+
+exports.patch = (req, res)=>{
+  const id = parseInt(req.params.id);
+  const data = mahasiswaModel.patch(id, req.body);
+  if (!data) return res.status(404).json({ message: "Not Found" });
+  res.json(data);
+};
+
+exports.remove = (req, res)=>{
+  const id = parseInt(req.params.id);
+  const data = mahasiswaModel.remove(id);
+  if (!data) return res.status(404).json({ message: "Not Found" });
+  res.json({ message: "Data berhasil dihapus", data });
 };

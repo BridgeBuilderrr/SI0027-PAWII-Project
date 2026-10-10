@@ -1,22 +1,48 @@
-// Mini Project - Pertemuan 6-7: Layer Model
-// TODO 1: lengkapi data awal & tiga fungsi akses data di bawah ini.
-
 let mahasiswa = [
-  { id: 1, nama: "Andi", jurusan: "Sistem Informasi" },
-  { id: 2, nama: "Budi", jurusan: "Informatika" },
+  { id: 1, nama: "Arvin", jurusan: "Sistem Informasi" },
+  { id: 2, nama: "Obama", jurusan: "Politik" },
 ];
 
-function getAll() {
-  // TODO: kembalikan seluruh data mahasiswa
+function getAll(){
+  return mahasiswa;
 }
 
-function getById(id) {
-  // TODO: cari & kembalikan satu data berdasarkan id
+function getById(id){
+  return mahasiswa.find((m)=>m.id === id);
 }
 
-function create(data) {
-  // TODO: buat objek baru dengan id = mahasiswa.length + 1,
-  // gabungkan dengan `data`, simpan ke array, lalu kembalikan objek baru tsb
+function create(data){
+  const baru = { id: mahasiswa.length + 1, ...data };
+  mahasiswa.push(baru);
+  return baru;
 }
 
-module.exports = { getAll, getById, create };
+function update(id, data){
+  const index = mahasiswa.findIndex((m) => m.id === id);
+  if (index === -1) return null;
+
+  const updated = { ...mahasiswa[index], ...data, id };
+  mahasiswa[index] = updated;
+  return updated;
+}
+
+function patch(id, data){
+  const index = mahasiswa.findIndex((m) => m.id === id);
+  if (index === -1) return null;
+
+  const updated = { ...mahasiswa[index], ...data };
+  mahasiswa[index] = updated;
+  return updated;
+}
+
+function remove(id){
+  const index = mahasiswa.findIndex((m) => m.id === id);
+  if (index === -1) return null;
+
+  const deleted = mahasiswa[index];
+  mahasiswa.splice(index, 1);
+  return deleted;
+}
+
+module.exports = {getAll, getById, create, update, patch, remove};
+

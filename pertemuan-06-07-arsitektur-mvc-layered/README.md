@@ -1,50 +1,90 @@
-# Pertemuan 6-7 - Arsitektur Backend Terstruktur (MVC/Layered)
+# API Akademik - Express MVC Layered
 
-Mini-project pendamping untuk materi slide `Materi-Pertemuan-06-07-Arsitektur-MVC-Layered.pptx`.
+Aplikasi backend sederhana berbasis Express.js untuk mengelola data akademik seperti mahasiswa, fakultas, prodi, dan dosen.
 
-## Tujuan
+## 1. Clone repo
 
-Merefactor RESTful API `mahasiswa` (dari Pertemuan 3-4) dari satu file `app.js` menjadi struktur berlapis: **Route - Controller - Model**. Starter ini hanya mencakup modul `mahasiswa`; solusi referensi memperluasnya dengan modul `Fakultas`, `Prodi`, `Dosen` mengikuti pola yang sama.
-
-## Struktur
-
-```
-pertemuan-06-07-arsitektur-mvc-layered/
-├── app.js
-├── routes/mahasiswaRoutes.js
-├── controllers/mahasiswaController.js
-└── models/mahasiswaModel.js
+```bash
+git clone <url-repository-anda>
+cd KUIS1_2428240004
 ```
 
-## Pemetaan Layer
-
-| Layer | Contoh File | Tanggung Jawab |
-|---|---|---|
-| Route | `routes/mahasiswaRoutes.js` | Mendefinisikan endpoint & HTTP method |
-| Controller | `controllers/mahasiswaController.js` | Menangani logika request-response |
-| Model | `models/mahasiswaModel.js` | Mengelola struktur & akses data |
-
-## Mengerjakan
-
-Lengkapi setiap `// TODO` pada `models/mahasiswaModel.js`, `controllers/mahasiswaController.js`, `routes/mahasiswaRoutes.js`, dan `app.js` sesuai urutan (Model → Controller → Route → app.js).
+## 2. Install dependency
 
 ```bash
 npm install
-npm start
-# server berjalan di http://localhost:3000
 ```
+
+## 3. Jalankan aplikasi
+
+```bash
+npm start
+```
+
+Server akan berjalan di:
+
+```text
+http://localhost:3000
+```
+
+## 4. Endpoint yang tersedia
+
+```text
+GET    /mahasiswa
+GET    /mahasiswa/:id
+POST   /mahasiswa
+
+GET    /fakultas
+GET    /fakultas/:id
+POST   /fakultas
+
+GET    /prodi
+GET    /prodi/:id
+POST   /prodi
+
+GET    /dosen
+GET    /dosen/:id
+POST   /dosen
+```
+
+## 5. Contoh testing dengan curl
 
 ```bash
 curl http://localhost:3000/mahasiswa
+curl http://localhost:3000/fakultas
+curl http://localhost:3000/prodi
+curl http://localhost:3000/dosen
 ```
 
-Bandingkan hasilnya dengan modul `mahasiswa` pada solusi referensi di repositori terpisah [SI0027-PAWII-Solution](https://github.com/nurrachmat-nr/SI0027-PAWII-Solution) (di sana tersedia juga modul `fakultas`, `prodi`, `dosen`) setelah selesai.
+Untuk menambahkan data baru:
 
-## Kaitan dengan Tugas Project Mandiri (Kuis 1)
+```bash
+curl -X POST http://localhost:3000/mahasiswa \
+  -H "Content-Type: application/json" \
+  -d '{"nama":"Budi","jurusan":"Teknik Informatika"}'
+```
 
-Tugas Project Mandiri pada slide materi meminta Anda untuk:
+## 6. Struktur project
 
-1. Merefactor RESTful API **project akhir Anda sendiri** menjadi struktur MVC/Layered.
-2. Menambahkan 3 modul baru — `Prodi`, `Fakultas`, dan `Dosen` — masing-masing dengan file model, controller, dan route sendiri.
-
-**Catatan penting:** solusi referensi pada repositori [SI0027-PAWII-Solution](https://github.com/nurrachmat-nr/SI0027-PAWII-Solution) mendemonstrasikan pola lengkap di atas (termasuk keempat modul beserta relasinya) menggunakan data akademik contoh sebagai referensi cara menyusun layer dan relasi antar modul. Ini **bukan pengganti** pengerjaan Tugas Project Mandiri Anda — tugas tetap harus diterapkan pada entitas dan basis kode **project akhir Anda sendiri** (bukan menyalin domain "mahasiswa/prodi/fakultas/dosen" ini), lalu dikumpulkan secara terpisah sebagai persiapan Kuis 1.
+```text
+KUIS1_2428240004/
+├── app.js
+├── package.json
+├── README.md
+├── controllers/
+│   ├── mahasiswaController.js
+│   ├── fakultasController.js
+│   ├── prodiController.js
+│   └── dosenController.js
+├── models/
+│   ├── mahasiswaModel.js
+│   ├── fakultasModel.js
+│   ├── prodiModel.js
+│   └── dosenModel.js
+├── routes/
+│   ├── mahasiswaRoutes.js
+│   ├── fakultasRoutes.js
+│   ├── prodiRoutes.js
+│   └── dosenRoutes.js
+└── node_modules/
+``
