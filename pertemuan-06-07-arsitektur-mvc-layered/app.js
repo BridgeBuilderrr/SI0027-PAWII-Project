@@ -1,7 +1,3 @@
-// Mini Project - Pertemuan 6-7: Menghubungkan Semua Layer
-// TODO 4: gunakan express.json() dan hubungkan mahasiswaRoutes pada prefix /mahasiswa.
-// Jalankan dengan: npm install && npm start
-
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
