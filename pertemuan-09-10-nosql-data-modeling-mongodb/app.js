@@ -12,23 +12,46 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const mahasiswaRoutes = require("./routes/mahasiswaRoutes");
-const prodiRoutes = require("./routes/prodiRoutes");
+const bahasaProgramRoutes = require("./routes/bahasaProgramRoutes");
+const kategoriRoutes = require("./routes/kategoriRoutes");
+const errorHandler = require("./middlewares/errorHandler");
 
 app.use(express.json());
 
-app.use("/mahasiswa", mahasiswaRoutes);
-app.use("/prodi", prodiRoutes);
+app.get("/", (req, res) => {
+  res.json({
+    message: "API Ensiklopedia Bahasa Pemrograman",
+    docs: [
+      "/api/bahasa-program",
+      "/api/kategori",
+    ],
+  });
+});
 
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => {
+app.use("/api/bahasa-program", bahasaProgramRoutes);
+app.use("/api/kategori", kategoriRoutes);
+app.use("/bahasa-program", bahasaProgramRoutes);
+app.use("/kategori", kategoriRoutes);
+
+app.use((req, res) => {
+  res.status(404).json({
+    message: "Endpoint tidak ditemukan",
+  });
+});
+
+app.use(errorHandler);
+
+const startServer = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI);
     console.log("Terhubung ke MongoDB Atlas");
     app.listen(PORT, () => {
       console.log(`Server berjalan di http://localhost:${PORT}`);
     });
-  })
-  .catch((err) => {
+  } catch (err) {
     console.error("Gagal terhubung ke MongoDB:", err.message);
     process.exit(1);
-  });
+  }
+};
+
+startServer();
